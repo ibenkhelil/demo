@@ -44,6 +44,13 @@ class ValidatorTest extends TestCase
         $this->validator->validateUsername('INVALID');
     }
 
+    public function testValidateUsernameTooLong(): void
+    {
+        $this->expectException('Exception');
+        $this->expectExceptionMessage('The username can not be longer than 50 characters.');
+        $this->validator->validateUsername(str_repeat('a', 51));
+    }
+
     public function testValidatePassword(): void
     {
         $test = 'password';

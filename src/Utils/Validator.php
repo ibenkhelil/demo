@@ -33,6 +33,10 @@ class Validator
             throw new InvalidArgumentException('The username must contain only lowercase latin characters and underscores.');
         }
 
+        if (u($username)->length() > 50) {
+            throw new InvalidArgumentException('The username can not be longer than 50 characters.');
+        }
+
         return $username;
     }
 
