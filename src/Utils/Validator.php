@@ -23,10 +23,17 @@ use function Symfony\Component\String\u;
  */
 class Validator
 {
+    // Keep in sync with the Assert\Length constraint on User::$username
+    private const MAX_USERNAME_LENGTH = 50;
+
     public function validateUsername(?string $username): string
     {
         if (empty($username)) {
             throw new InvalidArgumentException('The username can not be empty.');
+        }
+
+        if (strlen($username) > self::MAX_USERNAME_LENGTH) {
+            throw new InvalidArgumentException(sprintf('The username can not be longer than %d characters.', self::MAX_USERNAME_LENGTH));
         }
 
         if (1 !== preg_match('/^[a-z_]+$/', $username)) {
