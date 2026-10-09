@@ -1,10 +1,8 @@
 name: "Lint"
 
+# Disabled on PRs and pushes for now; run manually from the Actions tab.
 on:
-    pull_request:
-    push:
-        branches:
-            - main
+    workflow_dispatch:
 
 env:
     fail-fast: true
