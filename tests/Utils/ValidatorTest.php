@@ -44,6 +44,13 @@ class ValidatorTest extends TestCase
         $this->validator->validateUsername('INVALID');
     }
 
+    public function testValidateUsernameMaxLength(): void
+    {
+        $test = str_repeat('a', 50);
+
+        $this->assertSame($test, $this->validator->validateUsername($test));
+    }
+
     public function testValidateUsernameTooLong(): void
     {
         $this->expectException('Exception');
