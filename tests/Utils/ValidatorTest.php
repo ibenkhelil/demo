@@ -99,4 +99,25 @@ class ValidatorTest extends TestCase
         $this->expectExceptionMessage('The full name can not be empty.');
         $this->validator->validateFullName(null);
     }
+
+    public function testValidateAge(): void
+    {
+        $test = 42;
+
+        $this->assertSame($test, $this->validator->validateAge($test));
+    }
+
+    public function testValidateAgeEmpty(): void
+    {
+        $this->expectException('Exception');
+        $this->expectExceptionMessage('The age can not be empty.');
+        $this->validator->validateAge(null);
+    }
+
+    public function testValidateAgeOutOfRange(): void
+    {
+        $this->expectException('Exception');
+        $this->expectExceptionMessage('The age must be between 0 and 150.');
+        $this->validator->validateAge(200);
+    }
 }
