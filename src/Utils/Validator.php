@@ -70,4 +70,17 @@ class Validator
 
         return $fullName;
     }
+
+    public function validateAge(?int $age): int
+    {
+        if (null === $age) {
+            throw new InvalidArgumentException('The age can not be empty.');
+        }
+
+        if ($age < 0 || $age > 150) {
+            throw new InvalidArgumentException('The age must be between 0 and 150.');
+        }
+
+        return $age;
+    }
 }
